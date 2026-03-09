@@ -90,3 +90,4 @@ val c3 = Reverse(
 // Weihnachten bekomme ich 100€ und
 // Weihnachten zahle   ich 100$.
 val fxSwap1 = And(zcb1, c3)
+
