@@ -8,7 +8,8 @@ package de.activegroup;
  * - Schiff mit "Quadratkanone" ODER
  * - Verband aus zwei Flotten
  *
- * 
+ * Ist ein Punkt innerhalb oder außerhalb des Einflussbereichs
+ * einer Flotte?
  */
 
 public sealed interface Flotte {
