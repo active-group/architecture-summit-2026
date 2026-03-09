@@ -7,7 +7,7 @@ public sealed interface Animal {
      * - Gewicht
      * zusammengesetzte Daten / Produkt
     */
-    record Dillo(Liveness liveness, double weight) {
+    record Dillo(Liveness liveness, double weight) implements Animal {
         public Dillo runOver() {
             return new Dillo(Liveness.DEAD, weight);
         }
