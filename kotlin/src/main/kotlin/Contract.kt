@@ -75,7 +75,7 @@ fun and(contract1: Contract,
         contract2: Contract): Contract =
     when (contract1) {
         is Zero -> contract2
-        default ->
+        else
     }
 
 
