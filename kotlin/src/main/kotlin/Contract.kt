@@ -126,7 +126,7 @@ fun semantics(contract: Contract, now: Date)
             val (payments, residualContract) =
                 semantics(contract.contract, now)
             Pair(payments.map { payment -> payment.scale(contract.amount)},
-                 residualContract)
+                 Scaled(contract.amount, residualContract))
         }
         is Later ->
             if (now < contract.date) // Datum noch nicht erreicht
