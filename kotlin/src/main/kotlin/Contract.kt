@@ -1,5 +1,7 @@
 package de.activegroup
 
+import kotlin.contracts.ContractBuilder
+
 /* einfaches Beispiel:
  * Zero-Bond / zero-coupon bond
  * "Ich bekomme 100€ am 24.12.2026."
@@ -67,6 +69,12 @@ data class Reverse(val contract: Contract): Contract
 
 data class And(val contract1: Contract,
     val contract2: Contract): Contract
+
+// "smart constructor"
+fun and(contract1: Contract,
+        contract2: Contract): Contract =
+    when
+
 
 val xmas = "2026-12-24"
 val zcb1 = Later("2026-12-24",
