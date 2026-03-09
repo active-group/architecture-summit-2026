@@ -91,3 +91,20 @@ val c3 = Reverse(
 // Weihnachten zahle   ich 100$.
 val fxSwap1 = And(zcb1, c3)
 
+data class Payment(val date: Date,
+    val direction: Direction,
+    val amount: Amount,
+    val currency: Currency)
+
+// Semantik von Verträgen
+// alle Zahlungen bis now + "Residualvertrag"
+fun semantics(contract: Contract, now: Date)
+  : Pair<List<Payment>, Contract> =
+    when (contract) {
+        is One ->
+            Pair()
+        is Scaled -> TODO()
+        is Later -> TODO()
+        is Reverse -> TODO()
+        is And -> TODO()
+    }
