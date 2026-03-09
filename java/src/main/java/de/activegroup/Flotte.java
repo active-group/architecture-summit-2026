@@ -13,7 +13,7 @@ package de.activegroup;
  */
 
 public sealed interface Flotte {
-    record Kreiskanone() implements Flotte {}
+    record Kreiskanone(Point position, double reichweite) implements Flotte {}
     record Quadratkanone() implements Flotte {}
     record Verband(Flotte flotte1, Flotte flotte2) implements Flotte {}
 }
