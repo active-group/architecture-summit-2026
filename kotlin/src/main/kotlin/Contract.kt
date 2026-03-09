@@ -70,6 +70,18 @@ data class Reverse(val contract: Contract): Contract
 data class And(val contract1: Contract,
     val contract2: Contract): Contract
 
+// Halbgruppe:
+// Assoziativität
+// (a + b) + c = a + (b + c)
+// (a * b) * c = a * (b * c)
+
+// Monoid:
+// "0 ist das neutrale Element von +"
+// "1 ist das neutrale Element von *"
+// And(Zero, c) = And(c, Zero) = c
+// a + 0 = 0 + a = a
+// a * 1 = 1 * a = a
+
 // "smart constructor"
 fun and(contract1: Contract,
         contract2: Contract): Contract =
