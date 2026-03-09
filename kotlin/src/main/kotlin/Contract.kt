@@ -96,7 +96,10 @@ val fxSwap1 = And(zcb1, c3)
 data class Payment(val date: Date,
     val direction: Direction,
     val amount: Amount,
-    val currency: Currency)
+    val currency: Currency) {
+    fun reverse(): Payment =
+        
+}
 
 // Semantik von Verträgen
 // alle Zahlungen bis now + "Residualvertrag"
@@ -110,12 +113,17 @@ fun semantics(contract: Contract, now: Date)
                 Zero)
         is Scaled -> TODO()
         is Later -> TODO()
-        is Reverse -> TODO()
+        is Reverse -> {
+            val (payments, residualContract)
+                    = semantics(contract.contract, now)
+            Pair(TODO(), TODO())
+        }
         is And -> {
             val (payments1, residualContract1) =
                 semantics(contract.contract1, now)
             val (payments2, residualContract2) =
                 semantics(contract.contract2, now)
-            Pair(payments1 + payments2, TODO())
+            Pair(payments1 + payments2,
+                And(residualContract1, residualContract2))
         }
     }
