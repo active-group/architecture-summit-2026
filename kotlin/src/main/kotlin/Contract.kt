@@ -37,6 +37,8 @@ val zcb1 = ZeroCouponBond(100.0, Currency.EUR,
     "2026-12-24" )
  */
 
+data object Zero: Contract
+
 data class One(val currency: Currency): Contract
 
 // "Ich bekomme 1€ jetzt."
@@ -101,12 +103,14 @@ data class Payment(val date: Date,
 fun semantics(contract: Contract, now: Date)
   : Pair<List<Payment>, Contract> =
     when (contract) {
+        is Zero -> Pair(listOf(), Zero)
         is One ->
             Pair(listOf(Payment(now, Direction.LONG, 1.0,
-                contract.currency
-                )))
+                          contract.currency)),
+                Zero)
         is Scaled -> TODO()
         is Later -> TODO()
         is Reverse -> TODO()
-        is And -> TODO()
+        is And ->
+            
     }
