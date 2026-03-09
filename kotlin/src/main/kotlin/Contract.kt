@@ -111,7 +111,11 @@ fun semantics(contract: Contract, now: Date)
         is Scaled -> TODO()
         is Later -> TODO()
         is Reverse -> TODO()
-        is And ->
-            semantics(contract.contract1, now)
-            semantics(contract.contract2, now)
+        is And -> {
+            val (payment1, residualContract1) =
+                semantics(contract.contract1, now)
+            val (payments2, residualContract2) =
+                semantics(contract.contract2, now)
+            
+        }
     }
