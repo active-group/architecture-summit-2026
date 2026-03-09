@@ -1,7 +1,10 @@
 package de.activegroup;
 
 /*
- * Tiere auf dem texanischen Highyway:
+ * Tier auf dem texanischen Highyway:
+ * - Gürteltier      ODER
+ * - Klapperschlange
+ * Summe
  *
  * Datendefinition:
  * Gürteltier hat folgende Eigenschaften:
