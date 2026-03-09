@@ -148,3 +148,7 @@ fun semantics(contract: Contract, now: Date)
                 And(residualContract1, residualContract2))
         }
     }
+
+val c5 = Scaled(100.0,
+    And(One(Currency.EUR),
+        Later(xmas, One(Currency.EUR))))
