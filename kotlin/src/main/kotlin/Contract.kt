@@ -73,7 +73,10 @@ data class And(val contract1: Contract,
 // "smart constructor"
 fun and(contract1: Contract,
         contract2: Contract): Contract =
-    when
+    when (contract1) {
+        is Zero -> contract2
+        default ->
+    }
 
 
 val xmas = "2026-12-24"
