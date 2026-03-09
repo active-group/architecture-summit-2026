@@ -20,9 +20,9 @@ public sealed interface Animal {
 
     default public Animal feed(double amount) {
         return switch (this) {
-          case Dillo(Liveness.ALIVE, double weight) ->
+          case Dillo(Liveness.Alive(), double weight) ->
                   new Dillo(Liveness.ALIVE, weight + amount);
-          case Dillo(Liveness.DEAD, double wight) ->
+          case Dillo(Liveness.Dead(), double wight) ->
                   this;
           case Snake(double length, double width) ->
               new Snake(length, width + amount);

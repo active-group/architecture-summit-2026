@@ -7,6 +7,9 @@ package de.activegroup;
  * Fallunterscheidung / gemischte Daten / Summe
  * hier speziell: Aufzählung
  */
-public enum Liveness {
-    ALIVE, DEAD
+public sealed interface Liveness {
+    record Alive() implements Liveness {}
+    record Dead() implements Liveness {}
+    Liveness ALIVE = new Alive();
+    Liveness DEAD = new Dead();
 }
