@@ -2,8 +2,34 @@ package de.activegroup;
 
 public sealed interface Animal {
 
+    /*
+     * Tier auf dem texanischen Highyway:
+     * - Gürteltier      ODER
+     * - Klapperschlange
+     * Summe
+     */
+
     default public Animal runOver() {
-        switch (this)
+        return switch (this) {
+            case Dillo(Liveness l, double w) ->
+                new Dillo(Liveness.DEAD, w);
+            case Snake(double length, double width) ->
+                new Snake(length, 0);
+        };
+    }
+
+    default public Animal feed(double amount) {
+        return switch (this) {
+          case Dillo(Liveness liveness, double weight) ->
+                  switch (liveness) {
+                    case Liveness.ALIVE ->
+                            new Dillo(liveness, weight + amount);
+                    case Liveness.DEAD ->
+                            this;
+                  };
+          case Snake(double length, double width) ->
+              new Snake(length, width + amount);
+        };
     }
 
     /*
