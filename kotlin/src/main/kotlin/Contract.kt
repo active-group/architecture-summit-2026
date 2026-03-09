@@ -112,5 +112,6 @@ fun semantics(contract: Contract, now: Date)
         is Later -> TODO()
         is Reverse -> TODO()
         is And ->
-            
+            semantics(contract.contract1, now)
+            semantics(contract.contract2, now)
     }
