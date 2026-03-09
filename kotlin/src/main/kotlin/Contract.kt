@@ -75,7 +75,11 @@ fun and(contract1: Contract,
         contract2: Contract): Contract =
     when (contract1) {
         is Zero -> contract2
-        else
+        else ->
+            when (contract2) {
+                is Zero -> contract1
+                else -> And(contract1, contract2)
+            }
     }
 
 
@@ -156,7 +160,7 @@ fun semantics(contract: Contract, now: Date)
             val (payments2, residualContract2) =
                 semantics(contract.contract2, now)
             Pair(payments1 + payments2,
-                And(residualContract1, residualContract2))
+                and(residualContract1, residualContract2))
         }
     }
 
