@@ -106,6 +106,10 @@ data class Payment(val date: Date,
     fun reverse(): Payment =
         Payment(date, direction.reverse(),
             amount, currency)
+    fun scale(factor: Amount): Payment =
+        Payment(date, direction,
+            amount * factor,
+            currency)
 }
 
 // Semantik von Verträgen
@@ -118,11 +122,17 @@ fun semantics(contract: Contract, now: Date)
             Pair(listOf(Payment(now, Direction.LONG, 1.0,
                           contract.currency)),
                 Zero)
-        is Scaled -> TODO()
+        is Scaled -> {
+            val (payments, residualContract) =
+                semantics(contract.contract, now)
+            Pair(payments.map { payment -> payment.scale(contract.amount)},
+                 Scaled(contract.amount, residualContract))
+        }
         is Later ->
-            if (contract.date < now)
-
-            contract.contract
+            if (now < contract.date) // Datum noch nicht erreicht
+                Pair(listOf(), contract)
+            else // Datum ist erreicht
+                semantics(contract.contract, now)
         is Reverse -> {
             val (payments, residualContract)
                     = semantics(contract.contract, now)
