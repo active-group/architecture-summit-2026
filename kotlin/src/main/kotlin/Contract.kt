@@ -57,6 +57,12 @@ enum class Direction {
     LONG, SHORT
 }
 
+fun Direction.reverse(): Direction =
+    when (this) {
+        Direction.LONG -> Direction.SHORT
+        Direction.SHORT -> Direction.LONG
+    }
+
 data class Reverse(val contract: Contract): Contract
 
 data class And(val contract1: Contract,
@@ -98,7 +104,8 @@ data class Payment(val date: Date,
     val amount: Amount,
     val currency: Currency) {
     fun reverse(): Payment =
-        
+        Payment(date, direction.reverse(),
+            amount, currency)
 }
 
 // Semantik von Verträgen
@@ -112,11 +119,15 @@ fun semantics(contract: Contract, now: Date)
                           contract.currency)),
                 Zero)
         is Scaled -> TODO()
-        is Later -> TODO()
+        is Later ->
+            if (contract.date < now)
+
+            contract.contract
         is Reverse -> {
             val (payments, residualContract)
                     = semantics(contract.contract, now)
-            Pair(TODO(), TODO())
+            Pair(payments.map { payment -> payment.reverse() },
+                 Reverse(residualContract))
         }
         is And -> {
             val (payments1, residualContract1) =
