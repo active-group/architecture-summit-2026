@@ -102,7 +102,9 @@ fun semantics(contract: Contract, now: Date)
   : Pair<List<Payment>, Contract> =
     when (contract) {
         is One ->
-            Pair()
+            Pair(listOf(Payment(now, Direction.LONG, 1.0,
+                contract.currency
+                )))
         is Scaled -> TODO()
         is Later -> TODO()
         is Reverse -> TODO()
